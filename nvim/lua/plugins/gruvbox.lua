@@ -1,4 +1,4 @@
-return 
+return
 {
 	{
 		"ellisonleao/gruvbox.nvim",
@@ -6,4 +6,4 @@ return
 		config = true,
 		opts = ...}
 
-}	
+}
