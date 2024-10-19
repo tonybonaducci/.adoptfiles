@@ -1,6 +1,68 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #######################
 #       ALIAS         #
 #######################       
+
+## set zinit directory
+
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+#download zinit if not yet downloaded
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+## source
+source "${ZINIT_HOME}/zinit.zsh"
+
+#add powerlvl
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+#zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions 
+zinit light Aloxaf/fzf-tab
+# Load and initialise completion system
+autoload -U compinit && compinit
+
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+#Completion config
+#
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
 
 ## Neovim
 alias v="nvim"
@@ -11,7 +73,7 @@ alias cl="clear"
 
 ## lists
 alias ll="lsd -la"
-alias l="lsd"
+alias ls='ls --color'
 
 ## gits
 alias ga="git add"
@@ -25,26 +87,6 @@ alias ccf='cc -Wall -Wextra -Werror -g '
 ## exit terminal
 alias x="exit"
 
-## kitty alias
-##if [[ $USER == "lude-bri" ]]; then
-##	alias kitty=~/.local/kitty.app/bin/kitty
-##fi
-##alias k="kitty --start-as=fullscreen"
-
-#######################
-#        ZAP          #
-#######################
-
-# Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
-plug "zsh-users/zsh-syntax-highlighting"
-
-# Load and initialise completion system
-autoload -Uz compinit
-compinit
 
 # Suppress zsh compinit insecure directory warning
 zstyle ':compaudit' warn no
@@ -53,27 +95,10 @@ zstyle ':compaudit' warn no
 #export PATH="$PATH:$HOME/sgoinfre/Homebrew/bin"
 #export PATH="$HOME/.local/bin:$PATH"
 
-############################
-### Load Starship Prompt ###
-############################
 
-
-# PROMPT='%F{green}% %BI am Luigi%b %f %F{yellow}% (%f %F{red}% not Mario%f %F{yellow}%)%f %F{blue}% %B%C%b %f %F{yellow}% %B->%b%f %F{red}${vcs_info_msg_0_}%f% '
-
-if command -v starship > /dev/null 2>&1; then
-  eval "$(starship init zsh)"
-else
-  echo "Starship is not installed"
-fi
-
-
-#######################################
-
-#####################################
-### Clear google-chrome ingleton* ###
-#####################################
 if [[ -f ~/.config/google-chrome/Singleton* ]]; then
 	rm -rf ~/.config/google-chrome/Singleton*
 fi
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
