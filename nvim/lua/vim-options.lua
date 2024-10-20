@@ -3,7 +3,7 @@ local opt = vim.opt
 vim.g.user42= 'rmenezes'
 vim.g.mail42= 'rmenezes@student.42porto'
 
-opt.guifont = "MesloLGS Nerd Font Mono:h11"
+opt.guifont = "Iosevka Nerd Font:h11"
 
 -- Line Numbers
 opt.number = true
