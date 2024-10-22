@@ -1,9 +1,10 @@
 local opt = vim.opt
+local keymap = vim.keymap
 
 vim.g.user42= 'rmenezes'
 vim.g.mail42= 'rmenezes@student.42porto'
 
-opt.guifont = "Iosevka Nerd Font:h11"
+--opt.guifont = "Monoid Retina"
 
 -- Line Numbers
 opt.number = true
@@ -32,6 +33,12 @@ vim.opt.swapfile = false
 
 -- C Indentation
 opt.cindent = true
+
+-- LSP
+-- Disable/Enable LSP
+
+keymap.set("n", "<leader>ld", ":LspStop<CR>", { desc = "Disable LSP" })
+keymap.set("n", "<leader>le", ":LspStart<CR>", { desc = "Enable LSP" })
 
 -- terminal colors
 opt.termguicolors = true
