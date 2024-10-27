@@ -73,7 +73,7 @@ alias cl="clear"
 
 ## lists
 alias ll="lsd -la"
-alias ls='ls --color'
+alias ls='lsd'
 
 ## gits
 alias ga="git add"
@@ -83,7 +83,7 @@ alias gp="git push"
 alias glgg="git log --graph --oneline --decorate"
 alias fd='fdfind'
 alias ccf='cc -Wall -Wextra -Werror -g '
-
+alias ccpf='c++ -Wall -Wextra -Werror -std=c++98 '
 ## exit terminal
 alias x="exit"
 

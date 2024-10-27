@@ -25,7 +25,8 @@ config.window_background_image = "./1-filter.jpg"
 config.font_size = 18
 
 config.enable_tab_bar = false
-config.window_decorations = "TITLE | RESIZE"
+-- config.window_decorations = "TITLE | RESIZE"
+config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.8
 -- This is where you actually apply your config choices
 
