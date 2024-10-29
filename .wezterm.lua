@@ -16,18 +16,17 @@ config.font_rules =
 		font = wezterm.font_with_fallback
 		{
 			'Iosevka',
-			'Symbols Nerd Font Mono',
+			'Symbols Nerd Font',
 		},
 	},
 }
 
-config.window_background_image = "./1-filter.jpg"
+force_opengl = "WebGpu"
 config.font_size = 18
-
 config.enable_tab_bar = false
--- config.window_decorations = "TITLE | RESIZE"
-config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.8
+config.window_decorations = "TITLE | RESIZE"
+--config.window_decorations = "RESIZE"
+config.window_background_opacity = 1
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:

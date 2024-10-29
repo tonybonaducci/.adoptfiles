@@ -1,6 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -87,6 +88,7 @@ alias ccpf='c++ -Wall -Wextra -Werror -std=c++98 '
 ## exit terminal
 alias x="exit"
 
+export SHELL=/usr/bin/zsh
 
 # Suppress zsh compinit insecure directory warning
 zstyle ':compaudit' warn no
@@ -100,5 +102,5 @@ if [[ -f ~/.config/google-chrome/Singleton* ]]; then
 	rm -rf ~/.config/google-chrome/Singleton*
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+##eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
